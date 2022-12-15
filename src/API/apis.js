@@ -23,19 +23,34 @@ class Api {
 
     // crafts
 
-    async createCraft(craftInfo) {
-        return await fetch(`${this.BASE_URL}/craft`, {
+    async createCraft(craftInfo, onCraftNotCreated, onCraftCreated) {
+        const response = await fetch(`${this.BASE_URL}/craft`, {
             method: 'POST',
             headers: this.getHeaders(),
             body: JSON.stringify(craftInfo)
         });
+
+        const body = await response.json();
+        if (body.message) { // message is the error
+            return onCraftNotCreated(body.message)
+        }
+        return onCraftCreated("Successfully created")
     }
 
     async showCraft(craftId) {
-        return await fetch(`${this.BASE_URL}/craft/${craftId}`, {
+        const response = await fetch(`${this.BASE_URL}/craft/${craftId}`, {
             method: 'GET',
             headers: this.getHeaders()
         });
+        return await response.json();
+    }
+
+    async fetchCrafts() {
+        const response = await fetch(`${this.BASE_URL}/crafts`, {
+            method: 'GET',
+            headers: this.getHeaders()
+        });
+        return await response.json();
     }
 
     async deleteCraft(craftId) {
@@ -75,6 +90,7 @@ class Api {
         const body = await response.json();
         if (body.token) {
             localStorage.setItem("token", body.token);
+            localStorage.setItem("user", body.user);
             onSignedIn(); // user name can be displayed later
         } else {
             onError(body.message);
@@ -91,6 +107,7 @@ class Api {
         const body = await response.json();
         if (body.token) {
             localStorage.setItem("token", body.token);
+            localStorage.setItem("user", body.user);
             onSignedIn(); // (user), so user name can be displayed later
         } else {
             onError(body.message);
