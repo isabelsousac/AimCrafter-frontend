@@ -1,17 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Julius+Sans+One&family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-html, body {
-  height: 100%;
+
+:root {
+  /* Colours */
+  --text-color: #230c33ff;
+  --background-color: #f9fbfc;
+  --primary-color: #5697b3;
+  --secondary-color: #d4b9a0;
+  --accent-color: #98c57e;
+
+  /* Fonts */
+  --heading-font: 'Roboto', sans-serif;
+  --body-font: 'Archivo', sans-serif;
 }
 
+:is(h1, h2) {
+  font-family: var(--heading-font);
+}
+
+html,
 body {
-  background-image: url("../public/background.jpg")!important;
-  font-family: 'Archivo Narrow', sans-serif!important;
+  height: 100%;
+  font-family: var(--body-font)
 }
-
 
 .navbar-expand .navbar-nav {
   flex-direction: row;
@@ -20,7 +34,7 @@ body {
   gap: 20px;
   text-decoration: none;
   color: pink;
-  background-color: #ebebeb!important;
+  background-color: darken(var(--background-color), 50%);
   --bs-bg-opacity: 0;
 }
 
@@ -40,52 +54,69 @@ body {
 }
 
 .container-home-craft {
-  font-family: 'Julius Sans One', sans-serif!important;
+  font-family: 'Julius Sans One', sans-serif;
   width: 90%;
   justify-content: center;
   margin: 0 auto;
 }
 
 .register-container h3 {
-  font-family: 'Julius Sans One', sans-serif!important;
+  font-family: var(--body-font);
   text-align: center;
   margin-top: 10vh;
 }
 
+.register-form input[type="email"],
+.register-form input[type="password"] {
+  color: green;
+}
+
+.register-form label {
+  color: var(--secondary-color);
+}
+
+.register-buttom {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.register-buttom:hover {
+  background-color: var(--secondary-color);
+}
+
 .register-form {
-  font-family: 'Julius Sans One', sans-serif!important;
-  width: 80%;
+  font-family: var(--body-font);
+  max-width: 400px;
   margin: 0 auto;
   margin-top: 5vh;
-  background-color: #cfdbb4;
-  border-radius: 10px;
-  padding-top: 20px;
+  background-color: var(--secondary-color);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.register-form label {
+  color: var(--text-color);
 }
 
 .register-check {
-  font-family: 'Julius Sans One', sans-serif!important;
+  font-family: var(--body-font);
   display: flex;
   justify-content: center;
 }
 
 .register-buttom {
-  font-family: 'Julius Sans One', sans-serif!important;
-  background-color: #a6cc4e!important;
-  hover:bg-sky-700
-}
-
-.register.z-0 {
-  border-bottom: 1px solid #c8cfb6;
+  background-color: #a6cc4e;
 }
 
 .footer-container {
   height: 50px;
-  background-color: #f5b2b85e!important;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-    width: 100vw;
-    bottom: 0;
+  width: 100vw;
+  bottom: 0;
 }
 
 .footer-container a {
@@ -98,12 +129,12 @@ body {
 }
 
 .footer-box {
-  background-color: #f5b2b85e!important;
+  background-color: #f5b2b85e;
 }
 
 #root {
   min-height: 100%;
-  margin-bottom: -100px; 
+  margin-bottom: -100px;
 }
 
 /* .footer-container, #root:after {
@@ -115,17 +146,6 @@ body {
   display: block;
 }
 
-.nav-container {
-  background-image: url("../public/hands.jpg");
-  height: 25vh;
-  background-repeat: round;
-}
-
-@media (min-width: 1000px) {
-    .nav-container {
-    height: 40vh;
-  }
-}
 
 .show-craft-container {
   margin: 0 auto;
@@ -167,18 +187,18 @@ body {
 }
 
 .upload-craft-container {
-  font-family: 'Julius Sans One', sans-serif!important;
+  font-family: var(--body-font);
   width: 80%;
   margin: 0 auto;
   margin-top: 5vh;
-  background-color: #cfdbb4;
+  background-color: var(--accent-color);
   border-radius: 10px;
   padding-top: 20px;
-  
+
 }
 
 .upload-craft-container .w-full {
-  background-color: #b6c692;
+  background-color: var(--accent-color);
   width: 95%;
   margin: 0 auto;
 }
@@ -192,24 +212,19 @@ body {
   padding-left: 10px;
 }
 
-.label-parents ol, ul {
-  padding-left: 0!important;
+.label-parents ol,
+ul {
+  padding-left: 0;
 }
 
 .upload-button {
-  background-color: #cfdbb4!important;
-  width: auto!important;
+  background-color: var(--accent-color);
+  width: auto;
   margin: 0 auto;
   display: flex;
-  margin-bottom: 10px;
-}
-
-.upload-button:hover {
-  background-color: #b6c692;
 }
 
 .upload-craft-form h3 {
-  font-family: 'Julius Sans One', sans-serif!important;
   text-align: center;
   margin-top: 5vh;
 }
