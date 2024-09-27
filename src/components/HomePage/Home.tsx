@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
-import Api from '../../API/apis';
+import Api, { CraftSummary } from '../../API/apis';
 
 
 const Home = () => {
-    const [crafts, setCrafts] = useState([])
+    const [crafts, setCrafts] = useState<CraftSummary[]>([])
 
     useEffect(() => {
         const fetchCrafts = async () => {
@@ -35,7 +35,11 @@ const HomeHeader = () => {
     )
 }
 
-const CraftContainer = ({ craft }) => {
+interface CraftContainerProps { craft: CraftSummary }
+
+const CraftContainer = (props: CraftContainerProps) => {
+    const craft = props.craft;
+
     return (
         <div>
             <Link 
